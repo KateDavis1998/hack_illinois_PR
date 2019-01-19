@@ -4,4 +4,51 @@
 <title> Kate's Webpage </title>
 <meta charset = "utf-8">
 </head>
+<body onload="begin()">
+<div style="display:flex;flex-direction: column;justify-content:center;align-items: center;">
+	<h1>Kate's Webpage</h1>
+	<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+	</canvas>
+</div>
+
+
+<script>
+const canvas = document.querySelector('#myCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 600;
+canvas.height = 600;
+
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
+ctx.lineWidth = 5;
+let lastX = 0;
+let lastY = 0;
+ctx.beginPath();
+function begin(){
+	setInterval(update, 20);
+}
+function update(){
+	ctx.beginPath();
+    ctx.moveTo(Math.random()*600, Math.random()*600);
+	ctx.lineTo(Math.random()*600, Math.random()*600);
+	ctx.strokeStyle = getRandomColor();
+    ctx.stroke();
+	ctx.closePath();
+    
+}
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+</script>
+</body>
+
+
+
+
+
 </html>
