@@ -1,14 +1,25 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang = "en">
 <head>
-<title> Kate's Webpage </title>
-<meta charset = "utf-8">
+  <title> Kate's Webpage </title>
+  <meta charset = "utf-8">
 </head>
 <body onload="begin()">
 <div style="display:flex;flex-direction: column;justify-content:center;align-items: center;">
 	<h1>Kate's Webpage</h1>
-	<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
-	</canvas>
+	<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;"></canvas>
+	<input type="button" id="btn1" value="clear canvas" onclick="clrFunction()" />
+	<p>Brush color</p>
+	<input type="button" id="btn2" value="red" onclick="colrRed()" />
+	<input type="button" id="btn3" value="black" onclick="colrBlk()" />
+	<input type="button" id="btn4" value="green" onclick="colrGrn()" />
+	<input type="button" id="btn5" value="blue" onclick="colrBlue()" />
+	<input type="button" id="btn6" value="yellow" onclick="colrYllw()" />
+	<p>Brush size</p>
+	<input type="button" id="btn7" value="+" onclick="brshBig()" />
+	<input type="button" id="btn8" value="-" onclick="brshSmall()" />
+	<canvas id="myCoolerCanvas" width="600" height="600" style="border:1px solid #000000;"></canvas>
+	
 </div>
 
 
@@ -44,11 +55,74 @@ function getRandomColor() {
   }
   return color;
 }
+
+//
+
+const canvasTwo = document.querySelector('#myCoolerCanvas');
+var ctxTwo = canvasTwo.getContext("2d");
+canvasTwo.width = 600;
+canvasTwo.height = 600;
+ctxTwo.fillStyle = "white";
+ctxTwo.fillRect(0, 0, 600, 600);
+ctxTwo.lineJoin = 'round';
+ctxTwo.lineCap = 'round';
+var x = 25;
+ctxTwo.lineWidth = x;
+
+function brshBig() {
+  x+=10;
+  ctxTwo.lineWidth = x;
+  }
+  
+function brshSmall() {
+  x-=10;
+  ctxTwo.lineWidth = x;
+  }
+  
+function colrRed() {
+  ctxTwo.strokeStyle = "red";
+  }
+  
+function colrBlk() {
+  ctxTwo.strokeStyle = "black";
+  }
+  
+function colrGrn() {
+  ctxTwo.strokeStyle = "green";
+  }
+  
+function colrBlue() {
+  ctxTwo.strokeStyle = "blue";
+  }
+  
+function colrYllw() {
+  ctxTwo.strokeStyle = "yellow";
+  }
+
+function clrFunction() {
+  ctxTwo.clearRect(0, 0, 600, 600);
+  }
+
+let isDrawing = false;
+
+function paint(e) {
+  if (!isDrawing) return;
+  console.log(e);
+  ctxTwo.beginPath();
+  ctxTwo.moveTo(lastX, lastY);
+  ctxTwo.lineTo(e.offsetX, e.offsetY);
+  ctxTwo.stroke();
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+  //thanks Wes Bos for the paint function reference
+}
+
+canvasTwo.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+});
+canvasTwo.addEventListener('mousemove', paint);
+canvasTwo.addEventListener('mouseup', () => isDrawing = false);
+
 </script>
 </body>
-
-
-
-
-
 </html>
