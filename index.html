@@ -10,11 +10,11 @@
 	<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;"></canvas>
 	<input type="button" id="btn1" value="clear canvas" onclick="clrFunction()" />
 	<p>Brush color</p>
-	<input type="button" id="btn2" value="red" onclick="colrRed()" />
-	<input type="button" id="btn3" value="black" onclick="colrBlk()" />
-	<input type="button" id="btn4" value="green" onclick="colrGrn()" />
-	<input type="button" id="btn5" value="blue" onclick="colrBlue()" />
-	<input type="button" id="btn6" value="yellow" onclick="colrYllw()" />
+	<input type="button" id="btn2" value="red" onclick="colr('red')" />
+	<input type="button" id="btn3" value="black" onclick="colr('black')" />
+	<input type="button" id="btn4" value="green" onclick="colr('green')" />
+	<input type="button" id="btn5" value="blue" onclick="colr('blue')" />
+	<input type="button" id="btn6" value="yellow" onclick="colr('yellow')" />
 	<p>Brush size</p>
 	<input type="button" id="btn7" value="+" onclick="brshBig()" />
 	<input type="button" id="btn8" value="-" onclick="brshSmall()" />
@@ -79,25 +79,10 @@ function brshSmall() {
   ctxTwo.lineWidth = x;
   }
   
-function colrRed() {
-  ctxTwo.strokeStyle = "red";
+function colr(clr) {
+  ctxTwo.strokeStyle = clr;
   }
-  
-function colrBlk() {
-  ctxTwo.strokeStyle = "black";
-  }
-  
-function colrGrn() {
-  ctxTwo.strokeStyle = "green";
-  }
-  
-function colrBlue() {
-  ctxTwo.strokeStyle = "blue";
-  }
-  
-function colrYllw() {
-  ctxTwo.strokeStyle = "yellow";
-  }
+
 
 function clrFunction() {
   ctxTwo.clearRect(0, 0, 600, 600);
